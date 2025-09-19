@@ -1,8 +1,17 @@
 # Todo Manager Implementation Plan
 
-## 1. Development Phases
+## Overview
+This plan covers the implementation phases (Phases 3-6 from the lesson README.md).
+We've already completed:
+- ✅ Phase 1 (Lesson): Created TODO-DESIGN.md
+- ✅ Phase 2 (Lesson): Created this TODO-PLAN.md
 
-### Phase 1: Project Setup & Model (2 hours)
+Now we implement the actual application:
+
+## 1. Implementation Phases
+
+### Implementation Phase 1: Project Setup & Model (2 hours)
+*Corresponds to Lesson Phase 3*
 **Goal**: Set up TypeScript project and implement data layer
 
 **Tasks**:
@@ -21,8 +30,15 @@
 
 ---
 
-### Phase 2: Basic Blessed UI (2 hours)
+### Implementation Phase 2: Basic Blessed UI (View) (2 hours)
+*Corresponds to Lesson Phase 5 (modified order)*
+
 **Goal**: Create minimal blessed interface with list display
+
+**Note**: We build View BEFORE Controller because:
+- View can be tested independently with mock data
+- Controller needs both Model and View to connect
+- Our simplified design has no separate CLI interface
 
 **Tasks**:
 1. Set up blessed screen and list widget
@@ -40,8 +56,13 @@
 
 ---
 
-### Phase 3: Controller Integration (2 hours)
+### Implementation Phase 3: Controller Integration (2 hours)
+*Corresponds to parts of Lesson Phase 4 & 6*
+
 **Goal**: Connect Model and View through Controller
+
+**Note**: In our simplified design, the Controller connects Model and View for the blessed UI.
+We're NOT building a separate CLI interface as originally suggested in Lesson Phase 4.
 
 **Tasks**:
 1. Create Controller class
@@ -59,7 +80,8 @@
 
 ---
 
-### Phase 4: Input Handling (1 hour)
+### Implementation Phase 4: Input Handling (1 hour)
+*Part of Lesson Phase 6 (Integration)*
 **Goal**: Add user input for new todos
 
 **Tasks**:
@@ -77,7 +99,8 @@
 
 ---
 
-### Phase 5: Polish & Error Handling (1 hour)
+### Implementation Phase 5: Polish & Error Handling (1 hour)
+*Corresponds to Lesson Phase 6 (Polish)*
 **Goal**: Make the app robust and user-friendly
 
 **Tasks**:
@@ -95,6 +118,49 @@
 **Complexity**: Low
 
 **Total Estimated Time**: 8 hours
+
+---
+
+## Phase Mapping: Lesson vs Implementation
+
+### Why Our Order Differs from README.md
+
+The **lesson README.md** suggests building a full-featured todo manager with:
+- Multiple panels (list, details, command input)
+- CLI commands separate from the UI
+- Complex Controller handling both CLI and UI
+
+Our **simplified TODO-DESIGN.md** has:
+- Single panel UI (just the list)
+- No separate CLI interface
+- Simple Controller connecting Model and View
+
+### Phase Correspondence Table
+
+| Lesson Phase (README.md) | Our Implementation Phase | What We Actually Build |
+|--------------------------|-------------------------|------------------------|
+| Phase 1: Design Doc | ✅ Complete | TODO-DESIGN.md |
+| Phase 2: Plan Doc | ✅ Complete | TODO-PLAN.md (this doc) |
+| Phase 3: Model | Implementation Phase 1 | Model + Storage |
+| Phase 4: CLI Controller | *(Skip - no CLI)* | We don't build separate CLI |
+| Phase 5: View (Blessed) | Implementation Phase 2 | Blessed UI |
+| Phase 6: Integration | Implementation Phases 3-5 | Controller + Polish |
+
+### Why We Build View Before Controller
+
+**Original README.md Order** (for complex app):
+1. Model → CLI Controller → Blessed View → Integration
+
+**Our Simplified Order** (better for simple app):
+1. Model → Blessed View → Controller → Polish
+
+**Rationale**:
+- ✅ **No CLI to build** - We simplified to just blessed UI
+- ✅ **Controller needs both Model and View** - Can't connect what doesn't exist
+- ✅ **View can be tested with mock data** - Easier to verify it works
+- ✅ **Simpler mental model** - Build the pieces, then connect them
+
+---
 
 ## 2. File Structure and Organization
 

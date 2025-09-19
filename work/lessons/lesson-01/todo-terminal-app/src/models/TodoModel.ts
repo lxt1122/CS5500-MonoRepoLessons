@@ -55,11 +55,14 @@ export class TodoModel {
     const sanitizedTitle = TodoValidation.sanitizeTitle(title);
 
     // Create new todo with auto-generated values
+    const now = new Date();
     const newTodo: Todo = {
       id: uuidv4(),
       title: sanitizedTitle,
+      description: undefined,
       completed: false, // Default to false for new todos
-      createdAt: new Date()
+      createdAt: now,
+      updatedAt: now
     };
 
     // Add to collection and save
@@ -99,6 +102,7 @@ export class TodoModel {
     }
 
     todo.completed = !todo.completed;
+    todo.updatedAt = new Date();
     this.saveTodos();
     
     return todo;

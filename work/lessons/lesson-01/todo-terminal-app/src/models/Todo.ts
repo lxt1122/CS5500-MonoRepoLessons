@@ -9,11 +9,17 @@ export interface Todo {
   /** Todo title (required, 1-100 characters) */
   title: string;
   
+  /** Optional description for additional details */
+  description?: string;
+  
   /** Completion status (defaults to false for new todos) */
   completed: boolean;
   
   /** Creation timestamp (auto-set on creation) */
   createdAt: Date;
+  
+  /** Last update timestamp (auto-set on updates) */
+  updatedAt: Date;
 }
 
 /**

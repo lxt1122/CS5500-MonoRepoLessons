@@ -10,6 +10,9 @@ A terminal-based todo list manager built with Node.js, TypeScript, and blessed.
 - ✅ Real-time UI updates
 - ✅ Input validation and error handling
 - ✅ TypeScript for type safety
+- ✅ **Full Command Line Interface (CLI)**
+- ✅ Multiple output formats (table, JSON, simple)
+- ✅ Comprehensive help system
 
 ## Development Status
 
@@ -20,16 +23,23 @@ A terminal-based todo list manager built with Node.js, TypeScript, and blessed.
 - [x] TodoModel class with CRUD operations
 - [x] Comprehensive test suite for Model layer
 
-### 🚧 Phase 2: View Layer (NEXT)
-- [ ] Blessed UI components and layout
-- [ ] Todo list display with scrolling
-- [ ] Status bar with keyboard shortcuts
-- [ ] Basic keyboard navigation
+### ✅ Phase 2: View Layer (COMPLETED)
+- [x] Blessed UI components and layout
+- [x] Todo list display with scrolling
+- [x] Status bar with keyboard shortcuts
+- [x] Basic keyboard navigation
 
-### 🔄 Phase 3: Controller Layer (PLANNED)
-- [ ] Event handling and user input
+### ✅ CLI Interface (COMPLETED)
+- [x] Command line interface with full CRUD operations
+- [x] Comprehensive command parser with validation
+- [x] Multiple output formats (table, JSON, simple)
+- [x] Built-in help system with examples
+- [x] Error handling and user feedback
+
+### 🔄 Phase 3: Controller Layer (NEXT)
+- [ ] Event handling and user input for blessed UI
 - [ ] Integration between Model and View
-- [ ] Complete MVC architecture
+- [ ] Complete MVC architecture for terminal UI
 
 ## Installation
 
@@ -44,9 +54,44 @@ npm install
 npm run test
 ```
 
-### Development Mode (when UI is ready)
+### Test the View Layer (Blessed UI)
 ```bash
-npm run dev
+npm run test-view
+```
+
+### Use the Command Line Interface
+```bash
+# Show help
+npm run todo help
+
+# Add todos
+npm run todo add "Buy groceries"
+npm run todo add "Write report"
+
+# List todos
+npm run todo list
+npm run todo list --completed
+npm run todo list --format json
+
+# Complete todos
+npm run todo complete 1
+
+# Edit todos
+npm run todo edit 1 --title "New title"
+
+# Show statistics
+npm run todo stats
+
+# Remove todos
+npm run todo remove 1 --force
+
+# Get help for specific commands
+npm run todo help add
+```
+
+### Test CLI functionality
+```bash
+npm run test-cli
 ```
 
 ### Build for Production
@@ -72,9 +117,20 @@ todo-terminal-app/
 │   ├── models/
 │   │   ├── Todo.ts           # Todo interface and validation
 │   │   └── TodoModel.ts      # CRUD operations and data management
+│   ├── views/
+│   │   └── TodoView.ts       # Blessed UI components
+│   ├── cli/
+│   │   ├── types.ts          # CLI command definitions and types
+│   │   ├── parser.ts         # Command line argument parser
+│   │   ├── help.ts           # Help system and documentation
+│   │   ├── controller.ts     # CLI command controller
+│   │   └── index.ts          # CLI application entry point
 │   ├── utils/
 │   │   └── storage.ts        # File persistence with atomic writes
-│   └── test-model.ts         # Test script for Model layer
+│   ├── test-model.ts         # Test script for Model layer
+│   ├── test-view.ts          # Test script for View layer
+│   ├── test-cli.ts           # Test script for CLI
+│   └── todo-cli.ts           # CLI entry point
 ├── data/                     # JSON data storage
 ├── package.json
 ├── tsconfig.json
@@ -112,6 +168,39 @@ The `TodoModel` class provides the following methods:
 - `getCount(): number` - Get total count
 - `getCompletedCount(): number` - Get completed count
 - `clear(): number` - Remove all todos
+
+## CLI Commands
+
+The Command Line Interface provides these commands:
+
+### Main Commands
+- `todo add <title>` - Add a new todo item
+- `todo list [options]` - List todos with optional filtering
+- `todo complete <id>` - Mark a todo as complete
+- `todo remove <id>` - Delete a todo item
+- `todo edit <id> [options]` - Edit a todo item
+
+### Utility Commands
+- `todo clear [options]` - Remove multiple todos
+- `todo stats [options]` - Show todo statistics
+- `todo help [command]` - Show help information
+
+### Options
+- `--completed` - Filter completed todos
+- `--pending` - Filter pending todos
+- `--format <type>` - Output format (table, json, simple)
+- `--force` - Skip confirmation prompts
+- `--title <text>` - Set/update title
+
+### Examples
+```bash
+todo add "Buy groceries"           # Add new todo
+todo list --completed              # List completed todos
+todo complete 1                    # Complete todo #1
+todo edit 1 --title "New title"    # Edit todo title
+todo stats --format json           # JSON statistics
+todo help add                      # Help for add command
+```
 
 ## Testing
 
