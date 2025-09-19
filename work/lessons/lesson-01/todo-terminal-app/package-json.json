@@ -1,0 +1,27 @@
+{
+  "name": "todo-terminal-app",
+  "version": "1.0.0",
+  "description": "A simple terminal-based todo list manager",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test:model": "ts-node src/test-model.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["todo", "terminal", "blessed", "cli"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.25",
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+}
