@@ -1,236 +1,521 @@
 # Todo Terminal Manager
 
-A terminal-based todo list manager built with Node.js, TypeScript, and blessed.
+A comprehensive terminal-based todo list manager built with Node.js, TypeScript, and Blessed UI. This application provides both a rich terminal interface and a complete command-line interface for managing tasks efficiently.
 
-## Features
+## ✨ Features
 
-- ✅ Add, delete, and complete todos
-- ✅ Rich terminal UI with keyboard navigation  
-- ✅ Persistent storage to JSON file
-- ✅ Real-time UI updates
-- ✅ Input validation and error handling
-- ✅ TypeScript for type safety
-- ✅ **Full Command Line Interface (CLI)**
-- ✅ Multiple output formats (table, JSON, simple)
-- ✅ Comprehensive help system
+### Core Functionality
+- ✅ Complete CRUD operations (Create, Read, Update, Delete)
+- ✅ Toggle completion status for todos
+- ✅ Atomic file operations for data persistence
+- ✅ UUID-based unique identifiers
+- ✅ Comprehensive input validation
+- ✅ TypeScript for enhanced type safety
 
-## Development Status
+### User Interfaces
+- ✅ **Rich Terminal UI** - Interactive blessed-based interface with panels
+- ✅ **Command Line Interface** - Full CLI with argument parsing and help system
+- ✅ **Multiple Output Formats** - Table, JSON, and simple text formats
+- ✅ **Context-Sensitive Help** - Built-in help system with examples
 
-### ✅ Phase 1: Model Layer (COMPLETED)
-- [x] Project setup with TypeScript, blessed, and dependencies
-- [x] Todo interface with validation
-- [x] Storage utilities with atomic file operations
-- [x] TodoModel class with CRUD operations
-- [x] Comprehensive test suite for Model layer
+### Architecture & Quality
+- ✅ **MVC Architecture** - Clean separation of concerns
+- ✅ **Modular Design** - Reusable components and utilities
+- ✅ **Comprehensive Testing** - Test scripts for all major components
+- ✅ **Error Handling** - Robust error handling and user feedback
 
-### ✅ Phase 2: View Layer (COMPLETED)
-- [x] Blessed UI components and layout
-- [x] Todo list display with scrolling
+## 🏗️ Implementation Status
+
+### ✅ Core Components (COMPLETED)
+**Model Layer**
+- [x] `Todo` interface with validation rules
+- [x] `TodoModel` class with full CRUD operations
+- [x] `Storage` utility with atomic file operations
+- [x] Data persistence to JSON format
+
+**View Layer**
+- [x] Blessed UI framework with panel system
+- [x] Todo list panel with scrolling
+- [x] Todo details panel
+- [x] Command input panel
 - [x] Status bar with keyboard shortcuts
-- [x] Basic keyboard navigation
+- [x] Complete terminal UI application
 
-### ✅ CLI Interface (COMPLETED)
-- [x] Command line interface with full CRUD operations
-- [x] Comprehensive command parser with validation
-- [x] Multiple output formats (table, JSON, simple)
-- [x] Built-in help system with examples
+**CLI Interface**
+- [x] Command parser with argument validation
+- [x] CLI controller with business logic
+- [x] Help system with command documentation
+- [x] Multiple output formatters
 - [x] Error handling and user feedback
 
-### 🔄 Phase 3: Controller Layer (NEXT)
-- [ ] Event handling and user input for blessed UI
-- [ ] Integration between Model and View
-- [ ] Complete MVC architecture for terminal UI
+**Controller Layer**
+- [x] Terminal UI controller with event handling
+- [x] Integration between Model and blessed View
+- [x] Complete MVC architecture implementation
 
-## Installation
+### ✅ Testing & Quality Assurance
+- [x] Model layer testing (`test-model.ts`)
+- [x] View layer testing (`test-view.ts`) 
+- [x] CLI interface testing (`test-cli.ts`)
+- [x] Error handling validation
+- [x] Edge case testing
 
+## 🚀 Quick Start
+
+### Installation
 ```bash
 npm install
 ```
 
-## Usage
+### Running the Applications
 
-### Test the Model Layer
+#### Terminal UI (Interactive Interface)
 ```bash
-npm run test
+# Start the interactive terminal UI
+npm run ui
+# or
+npm run dev
 ```
 
-### Test the View Layer (Blessed UI)
+#### Command Line Interface
 ```bash
-npm run test-view
+# Show available commands
+npm run cli:dev help
+
+# Quick examples
+npm run cli:dev add "Buy groceries"
+npm run cli:dev list
+npm run cli:dev complete 1
+npm run cli:dev stats
 ```
 
-### Use the Command Line Interface
+### Testing the Components
 ```bash
-# Show help
-npm run todo help
+# Test the model layer
+npm run test:model
 
-# Add todos
-npm run todo add "Buy groceries"
-npm run todo add "Write report"
+# Test the view layer  
+npm run test:view
 
-# List todos
-npm run todo list
-npm run todo list --completed
-npm run todo list --format json
-
-# Complete todos
-npm run todo complete 1
-
-# Edit todos
-npm run todo edit 1 --title "New title"
-
-# Show statistics
-npm run todo stats
-
-# Remove todos
-npm run todo remove 1 --force
-
-# Get help for specific commands
-npm run todo help add
+# Test the CLI interface
+npm run test:cli
 ```
 
-### Test CLI functionality
-```bash
-npm run test-cli
-```
-
-### Build for Production
+### Production Build
 ```bash
 npm run build
 npm start
 ```
 
-## Architecture
+## 🖥️ User Interfaces
 
-This project follows the MVC (Model-View-Controller) architecture pattern:
+### Terminal UI (Blessed-based)
+The main interactive interface built with the Blessed library, featuring:
 
-- **Model** (`src/models/`): Data structures and business logic
-- **View** (`src/views/`): Blessed UI components (coming in Phase 2)  
-- **Controller** (`src/controllers/`): Event handling and coordination (coming in Phase 3)
-- **Utils** (`src/utils/`): Storage and utility functions
+- **Multi-panel layout** with todo list, details, input, and status panels
+- **Keyboard navigation** with intuitive shortcuts
+- **Real-time updates** as you modify todos
+- **Rich visual feedback** with colors and formatting
 
-## File Structure
+**Key Controls:**
+- `a` - Add new todo
+- `d` - Delete selected todo  
+- `Space` - Toggle completion status
+- `Enter` - Toggle completion
+- `q` - Quit application
+- `↑/↓` - Navigate todo list
 
-```
-todo-terminal-app/
-├── src/
-│   ├── models/
-│   │   ├── Todo.ts           # Todo interface and validation
-│   │   └── TodoModel.ts      # CRUD operations and data management
-│   ├── views/
-│   │   └── TodoView.ts       # Blessed UI components
-│   ├── cli/
-│   │   ├── types.ts          # CLI command definitions and types
-│   │   ├── parser.ts         # Command line argument parser
-│   │   ├── help.ts           # Help system and documentation
-│   │   ├── controller.ts     # CLI command controller
-│   │   └── index.ts          # CLI application entry point
-│   ├── utils/
-│   │   └── storage.ts        # File persistence with atomic writes
-│   ├── test-model.ts         # Test script for Model layer
-│   ├── test-view.ts          # Test script for View layer
-│   ├── test-cli.ts           # Test script for CLI
-│   └── todo-cli.ts           # CLI entry point
-├── data/                     # JSON data storage
-├── package.json
-├── tsconfig.json
-└── README.md
+### Command Line Interface (CLI)
+A comprehensive CLI for scripting and command-line usage:
+
+#### Main Commands
+```bash
+npm run cli:dev add <title>              # Add a new todo
+npm run cli:dev list [options]           # List todos with filtering
+npm run cli:dev complete <id>            # Mark todo as complete
+npm run cli:dev remove <id>              # Delete a todo
+npm run cli:dev edit <id> [options]      # Edit todo properties
 ```
 
-## Data Storage
+#### Utility Commands
+```bash
+npm run cli:dev clear [options]          # Remove multiple todos
+npm run cli:dev stats [options]          # Show statistics
+npm run cli:dev help [command]           # Show help information
+```
 
-Todos are stored in JSON format in the `data/` directory:
+#### Options & Formats
+```bash
+--completed                              # Filter completed todos only
+--pending                                # Filter pending todos only  
+--format table                           # Table format (default)
+--format json                            # JSON output
+--format simple                          # Simple text format
+--force                                  # Skip confirmation prompts
+--title "New Title"                      # Set/update title
+```
 
+#### CLI Examples
+```bash
+# Basic usage
+npm run cli:dev add "Buy groceries"
+npm run cli:dev list --completed
+npm run cli:dev complete 1
+npm run cli:dev edit 1 --title "Buy organic groceries"
+npm run cli:dev remove 1 --force
+
+# Advanced usage with formatting
+npm run cli:dev list --format json
+npm run cli:dev stats --format simple
+npm run cli:dev clear --completed --force
+
+# Get help
+npm run cli:dev help
+npm run cli:dev help add
+```
+
+## 🏛️ Architecture
+
+This project implements a clean **MVC (Model-View-Controller)** architecture with additional layers:
+
+### Core Architecture
+```
+┌─────────────────────────────────────────────┐
+│                 Interfaces                   │
+│                                             │
+│  ┌─────────────┐    ┌─────────────────┐    │
+│  │ Terminal UI │    │ CLI Interface   │    │
+│  │ (Blessed)   │    │ (Command Line)  │    │
+│  └─────────────┘    └─────────────────┘    │
+│           │                   │             │
+└───────────┼───────────────────┼─────────────┘
+            │                   │
+┌───────────┼───────────────────┼─────────────┐
+│           ▼                   ▼             │
+│  ┌─────────────┐    ┌─────────────────┐    │
+│  │    UI       │    │      CLI        │    │
+│  │ Controller  │    │   Controller    │    │
+│  └─────────────┘    └─────────────────┘    │
+│           │                   │             │
+│           └───────────┬───────┘             │
+└───────────────────────┼─────────────────────┘
+                        │
+┌───────────────────────┼─────────────────────┐
+│                       ▼                     │
+│            ┌─────────────────┐              │
+│            │   TodoModel     │              │
+│            │  (Business      │              │
+│            │    Logic)       │              │
+│            └─────────────────┘              │
+│                       │                     │
+│                       ▼                     │
+│            ┌─────────────────┐              │
+│            │    Storage      │              │
+│            │   (JSON File    │              │
+│            │  Persistence)   │              │
+│            └─────────────────┘              │
+└─────────────────────────────────────────────┘
+```
+
+### Component Structure
+
+#### **Models** (`src/models/`)
+- `Todo.ts` - Todo interface, validation rules, and type definitions  
+- `TodoModel.ts` - Core business logic and CRUD operations
+
+#### **Views** (`src/views/`)
+- `TerminalUIApp.ts` - Main terminal application coordinator
+- `BlessedUIFramework.ts` - UI framework and panel management
+- `TodoListPanel.ts` - Todo list display component
+- `TodoDetailsPanel.ts` - Todo details display
+- `CommandInputPanel.ts` - Input handling panel
+- `StatusBarPanel.ts` - Status and help display
+- `TodoView.ts` - Basic blessed UI components
+
+#### **Controllers** (`src/controllers/`)
+- `TodoController.ts` - Terminal UI event handling and coordination
+
+#### **CLI System** (`src/cli/`)
+- `index.ts` - CLI application entry point
+- `controller.ts` - CLI command execution and business logic
+- `parser.ts` - Command-line argument parsing
+- `help.ts` - Help system and documentation
+- `types.ts` - CLI type definitions and command schemas
+
+#### **Utilities** (`src/utils/`)
+- `storage.ts` - File persistence with atomic operations
+
+#### **Entry Points**
+- `terminal-ui.ts` - Terminal UI application entry point
+- `todo-cli.ts` - Simple CLI entry point wrapper
+
+#### **Testing Scripts**
+- `test-model.ts` - Model layer validation and testing
+- `test-view.ts` - View layer testing with mock data  
+- `test-cli.ts` - Comprehensive CLI testing suite
+
+## 💾 Data Storage & Model
+
+### Todo Data Structure
+```typescript
+interface Todo {
+  id: string;              // UUID v4 unique identifier
+  title: string;           // 1-100 characters, required
+  description?: string;    // Optional description field
+  completed: boolean;      // Completion status
+  createdAt: Date;         // Auto-set on creation
+  updatedAt: Date;         // Auto-updated on changes
+}
+```
+
+### JSON Storage Format
+Todos are persisted to `data/todos.json` with atomic file operations:
 ```json
 {
-  "version": "1.0.0", 
+  "version": "1.0.0",
   "todos": [
     {
-      "id": "uuid-here",
-      "title": "Todo title",
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "title": "Buy groceries",
+      "description": "Milk, eggs, and bread",
       "completed": false,
-      "createdAt": "2025-09-18T10:00:00Z"
+      "createdAt": "2025-09-28T10:00:00.000Z",
+      "updatedAt": "2025-09-28T10:00:00.000Z"
     }
   ]
 }
 ```
 
-## Model API
+### TodoModel API
+The `TodoModel` class provides comprehensive CRUD operations:
 
-The `TodoModel` class provides the following methods:
-
-- `add(title: string): Todo` - Add a new todo
-- `delete(id: string): boolean` - Delete a todo by ID  
+**Core Operations**
+- `add(title: string, description?: string): Todo` - Add new todo
+- `delete(id: string): boolean` - Delete todo by ID
 - `toggleComplete(id: string): Todo | null` - Toggle completion status
+- `updateTitle(id: string, newTitle: string): Todo | null` - Update title
+- `updateDescription(id: string, newDescription?: string): Todo | null` - Update description
+
+**Query Operations**  
 - `getAll(): Todo[]` - Get all todos
 - `getById(id: string): Todo | null` - Get todo by ID
-- `updateTitle(id: string, newTitle: string): Todo | null` - Update todo title
-- `getCount(): number` - Get total count
-- `getCompletedCount(): number` - Get completed count
+- `getCompleted(): Todo[]` - Get completed todos only
+- `getIncomplete(): Todo[]` - Get pending todos only
+
+**Statistics**
+- `getCount(): number` - Total todo count
+- `getCompletedCount(): number` - Completed todo count
+- `getIncompleteCount(): number` - Pending todo count
+
+**Bulk Operations**
 - `clear(): number` - Remove all todos
+- `clearCompleted(): number` - Remove completed todos only
 
-## CLI Commands
+**Storage Management**
+- `getStorageStatus(): StorageStatus` - Check file system status
+- `save(): void` - Manual save (auto-save is default)
+- `load(): void` - Reload from storage
 
-The Command Line Interface provides these commands:
+## 🧪 Testing & Quality Assurance
 
-### Main Commands
-- `todo add <title>` - Add a new todo item
-- `todo list [options]` - List todos with optional filtering
-- `todo complete <id>` - Mark a todo as complete
-- `todo remove <id>` - Delete a todo item
-- `todo edit <id> [options]` - Edit a todo item
+This project includes comprehensive testing for all major components:
 
-### Utility Commands
-- `todo clear [options]` - Remove multiple todos
-- `todo stats [options]` - Show todo statistics
-- `todo help [command]` - Show help information
+### Test Scripts
 
-### Options
-- `--completed` - Filter completed todos
-- `--pending` - Filter pending todos
-- `--format <type>` - Output format (table, json, simple)
-- `--force` - Skip confirmation prompts
-- `--title <text>` - Set/update title
-
-### Examples
+**Model Layer Testing** (`npm run test:model`)
 ```bash
-todo add "Buy groceries"           # Add new todo
-todo list --completed              # List completed todos
-todo complete 1                    # Complete todo #1
-todo edit 1 --title "New title"    # Edit todo title
-todo stats --format json           # JSON statistics
-todo help add                      # Help for add command
+# Tests core business logic and data persistence
+npm run test:model
+```
+- ✅ CRUD operations validation
+- ✅ Data validation and error handling  
+- ✅ File persistence and atomic operations
+- ✅ Edge cases and boundary conditions
+- ✅ Storage status and file system integration
+
+**View Layer Testing** (`npm run test:view`)
+```bash
+# Tests UI components with mock data
+npm run test:view
+```
+- ✅ Blessed UI panel rendering
+- ✅ Layout and visual formatting
+- ✅ Mock data display
+- ✅ Component initialization
+
+**CLI Interface Testing** (`npm run test:cli`)
+```bash
+# Comprehensive CLI command testing
+npm run test:cli
+```
+- ✅ All CRUD command operations
+- ✅ Help system validation
+- ✅ Output format testing (table, JSON, simple)
+- ✅ Error handling and edge cases
+- ✅ Command parsing and validation
+- ✅ Integration with model layer
+
+### Test Coverage
+The test suite validates:
+- **Functionality**: All features work as specified
+- **Error Handling**: Graceful handling of invalid inputs
+- **Data Integrity**: Persistence and data consistency  
+- **User Experience**: Clear feedback and intuitive interfaces
+- **Integration**: Components work together correctly
+
+### Running All Tests
+```bash
+# Run all test suites
+npm run test:model && npm run test:view && npm run test:cli
 ```
 
-## Testing
+## 📁 Project Structure
 
-The Model layer has been thoroughly tested with `src/test-model.ts`. Run tests with:
-
-```bash
-npm run test
+```
+todo-terminal-app/
+├── 📄 README.md                    # Project documentation
+├── 📄 package.json                 # Dependencies and scripts  
+├── 📄 tsconfig.json                # TypeScript configuration
+├── 📄 TODO-DESIGN.md               # Detailed design specification
+├── 📄 TODO-PLAN.md                 # Implementation planning document
+├── 
+├── 📂 src/                         # Source code
+│   ├── 📂 models/                  # Data models and business logic
+│   │   ├── Todo.ts                 # Todo interface and validation
+│   │   └── TodoModel.ts            # CRUD operations and data management
+│   │   
+│   ├── 📂 views/                   # UI components (Blessed-based)
+│   │   ├── BlessedUIFramework.ts   # UI framework and panel management
+│   │   ├── TerminalUIApp.ts        # Main terminal application
+│   │   ├── TodoListPanel.ts        # Todo list display component
+│   │   ├── TodoDetailsPanel.ts     # Todo details panel  
+│   │   ├── CommandInputPanel.ts    # Input handling panel
+│   │   ├── StatusBarPanel.ts       # Status and help display
+│   │   └── TodoView.ts             # Basic UI components
+│   │   
+│   ├── 📂 controllers/             # Application controllers
+│   │   └── TodoController.ts       # Terminal UI event handling
+│   │   
+│   ├── 📂 cli/                     # Command-line interface
+│   │   ├── index.ts                # CLI application entry point
+│   │   ├── controller.ts           # CLI command execution
+│   │   ├── parser.ts               # Command argument parsing
+│   │   ├── help.ts                 # Help system and documentation
+│   │   └── types.ts                # CLI type definitions
+│   │   
+│   ├── 📂 utils/                   # Utility functions
+│   │   └── storage.ts              # File persistence with atomic writes
+│   │   
+│   ├── 📄 terminal-ui.ts           # Terminal UI entry point
+│   ├── 📄 todo-cli.ts              # CLI entry point wrapper
+│   ├── 📄 test-model.ts            # Model layer testing script
+│   ├── 📄 test-view.ts             # View layer testing script
+│   └── 📄 test-cli.ts              # CLI testing script
+│   
+├── 📂 data/                        # JSON data storage
+│   ├── todos.json                  # Main todo data file
+│   └── test-todos.json             # Test data file
+│   
+└── 📂 dist/                        # Compiled JavaScript (after build)
+    └── ...                         # TypeScript compilation output
 ```
 
-Test coverage includes:
-- ✅ CRUD operations
-- ✅ Data validation  
-- ✅ File persistence
-- ✅ Error handling
-- ✅ Edge cases
+## 🛠️ Development Scripts
 
-## Next Steps
+The project provides comprehensive npm scripts for different development tasks:
 
-1. **Phase 2**: Implement blessed UI components for displaying todos
-2. **Phase 3**: Add Controller layer for user interaction
-3. **Phase 4**: Polish with input handling and confirmations
-4. **Phase 5**: Error handling and UI improvements
+```bash
+# Development & Testing
+npm run dev              # Start terminal UI in development mode
+npm run ui               # Start interactive terminal UI
+npm run cli:dev          # Run CLI commands in development mode
 
-## Dependencies
+# Testing Scripts  
+npm run test:model       # Test model layer with validation
+npm run test:view        # Test view layer with mock data
+npm run test:cli         # Test CLI with comprehensive suite
 
-- `blessed` - Rich terminal UI library
-- `uuid` - Unique ID generation
-- `typescript` - Type safety and modern JavaScript features
-- `ts-node` - TypeScript execution for development
+# Production Build
+npm run build            # Compile TypeScript to JavaScript
+npm start                # Build and run production version
+```
 
-## License
+## 🔧 Technology Stack
 
-ISC
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - Type safety and enhanced developer experience
+- **Runtime**: [Node.js](https://nodejs.org/) - JavaScript runtime environment
+- **UI Library**: [Blessed](https://github.com/chjj/blessed) - Rich terminal interfaces and components
+- **Architecture**: MVC (Model-View-Controller) with CLI interface layer
+- **Storage**: JSON file-based persistence with atomic operations
+- **Unique IDs**: UUID v4 for reliable unique identifiers
+- **Build Tool**: TypeScript compiler with ts-node for development
+
+### Dependencies
+```json
+{
+  "dependencies": {
+    "blessed": "^0.1.81",    // Terminal UI components
+    "uuid": "^9.0.0"         // Unique ID generation
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.25",  // TypeScript definitions
+    "@types/node": "^20.0.0",     // Node.js type definitions  
+    "@types/uuid": "^9.0.0",      // UUID type definitions
+    "ts-node": "^10.9.2",         // TypeScript execution
+    "typescript": "^5.0.0"        // TypeScript compiler
+  }
+}
+```
+
+## 📚 Documentation
+
+This project includes comprehensive documentation:
+
+- **README.md** (this file) - Quick start and usage guide
+- **TODO-DESIGN.md** - Detailed system design and specifications
+- **TODO-PLAN.md** - Implementation phases and development planning
+- **Inline Code Documentation** - TypeScript interfaces and JSDoc comments
+- **Help System** - Built-in CLI help with `npm run cli:dev help`
+
+## 🎯 Project Goals & Learning Outcomes
+
+This project demonstrates:
+
+1. **Clean Architecture** - MVC pattern with clear separation of concerns
+2. **TypeScript Proficiency** - Interface design, type safety, and modern JavaScript
+3. **Terminal UI Development** - Rich console applications with blessed
+4. **CLI Development** - Command-line tools with argument parsing and help systems
+5. **Testing Strategies** - Component testing and integration validation
+6. **File I/O Operations** - Atomic file operations and data persistence
+7. **Error Handling** - Graceful error handling and user feedback
+8. **Modular Design** - Reusable components and clean interfaces
+
+## 🤝 Contributing & Development
+
+### Setting up Development Environment
+```bash
+# Clone and setup
+git clone <repository>
+cd todo-terminal-app
+npm install
+
+# Start developing
+npm run dev                 # Terminal UI
+npm run cli:dev help        # CLI interface
+npm run test:model          # Run tests
+```
+
+### Code Organization
+- Follow the MVC architecture pattern
+- Keep components focused and single-purpose
+- Add comprehensive TypeScript types
+- Include tests for new functionality
+- Document public APIs with JSDoc comments
+
+## 📄 License
+
+ISC License - See LICENSE file for details.
+
+---
+
+*Built with TypeScript, Node.js, and Blessed UI*

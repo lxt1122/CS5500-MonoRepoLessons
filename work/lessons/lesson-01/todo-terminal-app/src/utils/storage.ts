@@ -42,7 +42,8 @@ export class Storage {
         // Convert createdAt strings back to Date objects
         return parsed.todos.map(todo => ({
           ...todo,
-          createdAt: new Date(todo.createdAt)
+          createdAt: new Date(todo.createdAt),
+          updatedAt: todo.updatedAt ? new Date(todo.updatedAt) : new Date(todo.createdAt)
         }));
       }
 
